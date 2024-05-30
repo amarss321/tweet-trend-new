@@ -2,12 +2,13 @@ pipeline {
     agent {
         label 'maven'
     }
+environment {
+    PATH = "/opt/apache-maven-3.9.7/bin:$PATH"
+}
     stages {
         stage('Clone-code') {
             steps {
-                script {
-                    git branch: 'main', url: 'https://github.com/amarss321/tweet-trend-new.git'
-                }
+                sh 'mvn clean deploy'
             }
         }
     }
